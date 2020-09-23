@@ -9,7 +9,8 @@
       "name": "vscode-jest-tests",
       "request": "launch",
       "args": [
-        "--runInBand"
+        "--runInBand",
+        "packages/purgecss/__tests__/safelist.test.ts"
       ],
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",

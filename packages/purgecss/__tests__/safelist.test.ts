@@ -127,6 +127,21 @@ describe("safelist option: greedy", () => {
   });
 });
 
+describe("error handling safelist option: greedy", () => {
+  it("does not have unhandled promise exceptions when argument is not a RegExp", () => {
+    expect.assertions(1);
+    const actual = new PurgeCSS().purge({
+      content: [`${ROOT_TEST_EXAMPLES}safelist/safelist_patterns_greedy.html`],
+      css: [`${ROOT_TEST_EXAMPLES}safelist/safelist_patterns_greedy.css`],
+      // @ts-ignore
+      safelist: {
+        greedy: ["/data-v-.*/"],
+      },
+    });
+    return expect(actual).rejects.toEqual({ error: "fåk mæ" });
+  });
+});
+
 describe("safelist option: keyframes", () => {
   let purgedCSS: string;
   beforeAll(async () => {
